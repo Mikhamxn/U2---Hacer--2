@@ -1,0 +1,30 @@
+# Dependencias
+/node_modules
+
+# Archivos de compilación
+/dist
+
+# Archivos de configuración
+/.env
+
+# Archivos de registro
+/logs
+
+# Archivos de respaldo
+/backup
+
+# Archivos de caché
+/.cache
+
+# Archivos de pruebas
+/coverage
+
+# Archivos de IDE
+/.vscode
+/.idea
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+/package-lock.json
