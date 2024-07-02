@@ -3,7 +3,7 @@ import { body, param } from "express-validator";
 import { UserController } from "../controllers/UserController";
 import { handleInputErrors } from "../middleware/validation";
 import { validateUserExists } from "../middleware/user";
-import { authenticateToken } from "../middleware/authMiddleware";
+import { authMiddleware } from "../middleware/authMiddleware";
 
 const router = Router();
 
@@ -36,7 +36,7 @@ router.post('/login',
 );
 
 // Ruta protegida para obtener el perfil del usuario
-router.get('/profile', authenticateToken, UserController.getUserProfile);
+router.get('/profile', authMiddleware, UserController.getUserProfile);
 
 // Rutas CRUD para usuarios
 router.get('/', UserController.getAllUsers);

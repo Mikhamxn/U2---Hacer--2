@@ -1,24 +1,24 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
-export interface AuthRequest extends Request {
-    userId?: string; // Puedes agregar cualquier otro dato que decidas incluir en el token
-}
+const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
 
-export const authenticateToken = (req: AuthRequest, res: Response, next: NextFunction) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-
-    if (!token) {
-        return res.sendStatus(401); // Unauthorized
+export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).send('Access denied. No token provided.');
     }
 
-    jwt.verify(token, process.env.JWT_SECRET!, (err: any, user: any) => {
-        if (err) {
-            return res.sendStatus(403); // Forbidden
-        }
+    const token = authHeader.split(' ')[1];
+    if (!token) {
+        return res.status(401).send('Access denied. Invalid token.');
+    }
 
-        req.userId = user.userId;
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        (req as any).user = decoded;
         next();
-    });
+    } catch (err) {
+        res.status(403).send('Access denied. Invalid token.');
+    }
 };
