@@ -1,26 +1,26 @@
-import mongoose, { Schema, Document } from "mongoose";
+import { Document, Schema, model } from 'mongoose';
+import bcrypt from 'bcrypt';
 
-// Definición de la interfaz IUser
 export interface IUser extends Document {
     email: string;
     password: string;
+    comparePassword(password: string): Promise<boolean>;
 }
 
-// Creación del esquema de usuario
-const userSchema: Schema = new Schema({
+const userSchema = new Schema<IUser>({
     email: {
         type: String,
         required: true,
         unique: true,
-        trim: true
     },
     password: {
         type: String,
         required: true,
-        trim: true
-    }
-}, { timestamps: true });
+    },
+});
 
-// Creación y exportación del modelo User
-const User = mongoose.model<IUser>('User', userSchema);
-export default User;
+userSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+};
+
+export default model<IUser>('User', userSchema);

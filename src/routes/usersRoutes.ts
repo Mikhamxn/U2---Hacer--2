@@ -36,7 +36,7 @@ router.post('/login',
 );
 
 // Ruta protegida para obtener el perfil del usuario
-router.get('/profile', authenticateToken, UserController.getProfile);
+router.get('/profile', authenticateToken, UserController.getUserProfile);
 
 // Rutas CRUD para usuarios
 router.get('/', UserController.getAllUsers);
