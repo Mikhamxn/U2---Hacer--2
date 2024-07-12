@@ -29,6 +29,16 @@ function AsignacionMaPro() {
     fetchData();
   }, []);
 
+  const getTeacherName = (numeroEmpleado) => {
+    const teacher = teachers.find((teacher) => teacher.numeroEmpleado === numeroEmpleado);
+    return teacher ? teacher.nombre : 'Profesor no encontrado';
+  };
+
+  const getSubjectName = (idMateria) => {
+    const subject = subjects.find((subject) => subject.idMateria === idMateria);
+    return subject ? subject.nombre : 'Materia no encontrada';
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -117,7 +127,7 @@ function AsignacionMaPro() {
         <ul className="divide-y divide-gray-200">
           {assignments.map((assignment) => (
             <li key={assignment._id} className="py-2">
-              <span className="font-medium">{assignment.numeroEmpleado}</span> - <span>{assignment.idMateria}</span>
+              <span className="font-medium">{getTeacherName(assignment.numeroEmpleado)}</span> - <span>{getSubjectName(assignment.idMateria)}</span>
             </li>
           ))}
         </ul>

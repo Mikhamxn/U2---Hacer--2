@@ -9,6 +9,7 @@ import teacherRoutes from "./routes/teacherRoutes";
 import subjectRoutes from "./routes/subjectRoutes";
 import studentRoutes from "./routes/studentRoutes";
 import materiaprofesorRoutes from './routes/materiaprofesorRoutes';
+import materiaAlumnoRoutes from './routes/materiaAlumnoRoutes'
 
 dotenv.config();
 
@@ -24,5 +25,6 @@ app.use("/api/users", usersRoutes);
 app.use("/api/teachers", teacherRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/students", studentRoutes);
+app.use('/api/materiaAlumno', materiaAlumnoRoutes);
 app.use("/api/materiaProfesor", materiaprofesorRoutes);
 export default app;
