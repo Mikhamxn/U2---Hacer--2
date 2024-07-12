@@ -3,9 +3,18 @@ const referencias = [
         nombre: "Inicio",
         href: "/"
     },
+    // {
+    //     nombre: "Inicia sesión",
+    //     href: "/login"
+    // },
     {
-        nombre: "Inicia sesión",
-        href: "/login"
+        nombre: "Asignar | Profesor-Materia",
+        href: "/asignacion-profesor-materia"
+
+    },    
+    {
+        nombre: "Asignar | Alumno-Materia",
+        href: "/asignacion-alumno-materia"
     },
     // {
     //     nombre: "Registrate",

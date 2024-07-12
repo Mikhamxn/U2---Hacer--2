@@ -11,6 +11,8 @@ import Alumnos from './pages/Usuario/Alumnos';
 import Reportes from './pages/Usuario/Reportes';
 import Footer from './componentes/Footer'
 import Materias from './pages/Usuario/Materias';
+import AsignacionAlMa from './pages/Usuario/AsignacionAlMa'
+import AsignacionMaPro from './pages/Usuario/AsignacionMaPro'
 function App() {
   return (
     <Router>
@@ -24,6 +26,9 @@ function App() {
         <Route path="/alumnos" element={<Alumnos />} />
         <Route path="/reportes" element={<Reportes />} />
         <Route path="/materias" element={<Materias />} />
+        <Route path="/asignacion-profesor-materia" element={<AsignacionMaPro />} />
+        <Route path="/asignacion-alumno-materia" element={<AsignacionAlMa />} />
+
       </Routes>
       <Footer />
     </Router>
